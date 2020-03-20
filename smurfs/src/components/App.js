@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux'
 import "./App.css";
-import { getData, addSmurf } from '../actions/actions'
+import { getData, addSmurf, deleteSmurf } from '../actions/actions'
 import { SmurfForm } from "./SmurfForm";
 
 
-function App(props) {
-  const [ newSmurf, setNewSmurf ] = useState({
-    name: '',
-    age: 0, 
-    height: '',
-  })
+const smurfFormState = {
+  name: '',
+  age: '', 
+  height: '',
+}
 
-  useEffect(() => {
-    props.getData()
-  }, [])
+function App({smurfs, getData, addSmurf, deleteSmurf}) {
+  const [ newSmurf, setNewSmurf ] = useState(smurfFormState)
+
+  useEffect(getData, [])
 
   const handleChange = (e) => {
     setNewSmurf({
@@ -25,20 +25,20 @@ function App(props) {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    props.addSmurf(newSmurf)
+    addSmurf(newSmurf)
+    setNewSmurf(smurfFormState)
   }
-
 
   return (
     <div className="App">
       <h1>Smurfs</h1>
-      <SmurfForm onChange={handleChange} onSubmit={onSubmit} />
-      {props.smurfs.map((smurf) => 
+      <SmurfForm onChange={handleChange} onSubmit={onSubmit} newSmurf={newSmurf} />
+      {smurfs.map((smurf) => 
         <div style={{margin: '1% 0'}}>
           <span style={{display: 'inline-block', width: '10%'}}>{smurf.name}</span>
           <span style={{display: 'inline-block', width: '10%'}}>{smurf.age}</span>
           <span style={{display: 'inline-block', width: '10%'}}>{smurf.height}</span>
-          <button>Delete</button>
+          <button onClick={() => {deleteSmurf(smurf)}}>Delete</button>
         </div>
       )}
     </div>
@@ -51,4 +51,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getData, addSmurf })(App);
+export default connect(mapStateToProps, { getData, addSmurf, deleteSmurf })(App);

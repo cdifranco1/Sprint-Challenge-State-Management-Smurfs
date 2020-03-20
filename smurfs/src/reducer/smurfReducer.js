@@ -1,6 +1,4 @@
-import { GET_DATA } from '../actions/actions'
-import { SET_DATA } from '../actions/actions'
-
+import { GET_DATA, SET_DATA, DELETE_SMURF } from '../actions/actions'
 
 const initialState = 
   {
@@ -26,6 +24,11 @@ export const smurfReducer = (state = initialState, action) => {
       return {
         ...state, 
         smurfs: action.payload
+      }
+    case DELETE_SMURF:
+      return {
+        ...state,
+        smurfs: state.smurfs.filter((smurf) => smurf.id !== action.payload.id)
       }
     default:
       return state;
