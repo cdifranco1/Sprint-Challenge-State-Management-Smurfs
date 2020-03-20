@@ -35,9 +35,9 @@ function App({smurfs, getData, addSmurf, deleteSmurf}) {
       <SmurfForm onChange={handleChange} onSubmit={onSubmit} newSmurf={newSmurf} />
       {smurfs.map((smurf) => 
         <div style={{margin: '1% 0'}}>
-          <span style={{display: 'inline-block', width: '10%'}}>{smurf.name}</span>
-          <span style={{display: 'inline-block', width: '10%'}}>{smurf.age}</span>
-          <span style={{display: 'inline-block', width: '10%'}}>{smurf.height}</span>
+          <span style={{display: 'inline-block', width: '10%'}}><strong>Name: </strong>{smurf.name}</span>
+          <span style={{display: 'inline-block', width: '10%'}}><strong>Age: </strong>{smurf.age}</span>
+          <span style={{display: 'inline-block', width: '10%'}}><strong>Height: </strong>{smurf.height}</span>
           <button onClick={() => {deleteSmurf(smurf)}}>Delete</button>
         </div>
       )}
