@@ -23,10 +23,28 @@ In this challenge, you are to build a Smurfs village utilizing context or Redux 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+  
+  - Allows you to pass state between sibling and child components without having to pass down through props. This gives multiple components access to the same state.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+  - Actions - Actions inform the reducer on how to update state. They are passed to the reducer through the use of action creators, which are connected to the store, and made available to components through props. 
+
+  - Reducers - "Reduce" previous state and updates to state into a new state object. They are informed by actions, which are dispatched to the reducer.
+
+  - Store - Maintains state in one large object or 'store'. The store connects components to a reducer, and will update its state when an action is dispatched to the reducer. 
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+  - Application state is global; component state is local. Application state may be necessary when working with a large, complex application.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+  - It allows us to use middleware, which intercepts our action creator and allows us to make updates to state that asynchronous code. Our action-creators must return functions instead of directly dispatching.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+  - I've enjoyed redux more than context api, just because it gives a global state object and allows you to make most state updates in one place. 
 
 ## Project Set Up
 
