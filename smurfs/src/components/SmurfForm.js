@@ -1,9 +1,8 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 
 
 export const SmurfForm = (props) => {
-  console.log(props)
   return (
     <form onSubmit={props.onSubmit}>
       <label name='name'>Name: </label>
@@ -15,7 +14,7 @@ export const SmurfForm = (props) => {
       <label name="height">Height: </label>
       <input type="text" name="height" value={props.newSmurf.height} onChange={props.onChange}/>
 
-      <button type="submit">Submit</button>
+      <button type="submit">Add Smurf</button>
     </form>
   )
 }

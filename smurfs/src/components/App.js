@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux'
+
+import { ListGroup, ListGroupItem, Button, Container } from 'reactstrap';
+
 import "./App.css";
 import { getData, addSmurf, deleteSmurf } from '../actions/actions'
 import { SmurfForm } from "./SmurfForm";
@@ -30,18 +33,26 @@ function App({smurfs, getData, addSmurf, deleteSmurf}) {
   }
 
   return (
-    <div className="App">
+    <Container className='p-2'>
       <h1>Smurfs</h1>
       <SmurfForm onChange={handleChange} onSubmit={onSubmit} newSmurf={newSmurf} />
-      {smurfs.map((smurf) => 
-        <div style={{margin: '1% 0'}}>
-          <span style={{display: 'inline-block', width: '10%'}}><strong>Name: </strong>{smurf.name}</span>
-          <span style={{display: 'inline-block', width: '10%'}}><strong>Age: </strong>{smurf.age}</span>
-          <span style={{display: 'inline-block', width: '10%'}}><strong>Height: </strong>{smurf.height}</span>
-          <button onClick={() => {deleteSmurf(smurf)}}>Delete</button>
+      <ListGroup className="mt-4">
+        <div className='d-flex justify-content-between'>
+          <h4>Name</h4>
+          <h4>Age</h4>
+          <h4>Height</h4>
+          <h4></h4>
         </div>
-      )}
-    </div>
+        {smurfs.map((smurf) =>         
+          <ListGroupItem key={smurf.id} className="d-flex justify-content-between">
+            <span>{smurf.name}</span>
+            <span>{smurf.age}</span>
+            <span>{smurf.height}</span>
+            <Button onClick={() => {deleteSmurf(smurf)}}>Delete</Button>
+          </ListGroupItem>
+        )}
+      </ListGroup>
+    </Container>
   );
 }
 

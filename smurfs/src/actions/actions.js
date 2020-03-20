@@ -20,11 +20,13 @@ export const addSmurf = (newSmurf) => dispatch => {
     .then(res => {
       dispatch({type: SET_DATA, payload: res.data})
     })
+    .catch(err => console.log(err))
 }
 
 export const deleteSmurf = (smurf) => dispatch => {
   axios
     .delete(`http://localhost:3333/smurfs/${smurf.id}`)
     .then(res => {console.log(res)})
+    .catch(err => console.log(err))
   dispatch({type: DELETE_SMURF, payload: smurf})
 }
